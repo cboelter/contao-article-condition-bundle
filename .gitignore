@@ -1,0 +1,12 @@
+# Composer
+/composer.lock
+/vendor/
+
+# Node
+/node_modules/
+
+# PhpUnit
+/phpunit.xml
+
+# OS
+.DS_STORE

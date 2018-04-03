@@ -1,1 +1,1 @@
-# contao-article-condition-bundle
+# article-condition-bundle

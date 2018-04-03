@@ -1,0 +1,42 @@
+{
+  "name": "cboelter/article-condition-bundle",
+  "description": "Conditions for contao articles",
+  "keywords": [
+    "contao",
+    "article",
+    "condition"
+  ],
+  "type": "contao-module",
+  "homepage": "https://boelter.eu",
+  "license": "LGPL-3.0+",
+  "authors": [
+    {
+      "name": "Christopher Bölter",
+      "email": "christopher@boelter.eu",
+      "homepage": "http://boelter.eu",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "source": "https://github.com/cboelter/contao-article-condition-bundle"
+  },
+  "require": {
+    "php": "^7.0",
+    "contao/core-bundle": "^4.4",
+    "contao-community-alliance/meta-palettes": "^2.0"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Boelter\\ArticleConditionBundle\\": "src"
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Boelter\\ArticleConditionBundle\\ContaoManager\\Plugin"
+  }
+}

@@ -1,0 +1,5 @@
+services:
+    boelter.article.condition.getarticle:
+        class: Boelter\ArticleConditionBundle\EventListener\ArticleListener
+        arguments:
+            - "@contao.framework"
