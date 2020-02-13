@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['articleConditionParameter'] = [
     'exclude' => true,
     'inputType' => 'text',
     'eval' => ['tl_class' => 'clr w50'],
-    'sql' => ['type' => 'string', 'length' => 50],
+    'sql' => ['type' => 'string', 'length' => 50, 'default' => ''],
 ];
 
 $GLOBALS['TL_DCA']['tl_article']['fields']['articleConditionInvert'] = [
@@ -31,5 +31,5 @@ $GLOBALS['TL_DCA']['tl_article']['fields']['articleConditionInvert'] = [
     'exclude' => true,
     'inputType' => 'checkbox',
     'eval' => ['tl_class' => 'w50 m12'],
-    'sql' => ['type' => 'string', 'length' => 1],
+    'sql' => ['type' => 'string', 'length' => 1, 'default' => ''],
 ];
