@@ -3,8 +3,10 @@
 namespace Boelter\ArticleConditionBundle\EventListener;
 
 use Contao\ArticleModel;
+use Contao\CoreBundle\Framework\Adapter;
 use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
 use Contao\Input;
+use Contao\Model;
 
 /**
  * Class ArticleListener
@@ -28,29 +30,35 @@ class ArticleListener
 
     /**
      * Check the visibility of the article based on the condition configuration.
-     * @param ArticleModel $article
-     * @return bool|void
+     * @param Model $model
+     * @return bool
      */
-    public function onGetArticle(ArticleModel $article)
+    public function onIsVisibleElement(Model $model, bool $visible): bool
     {
-        if (!$article->published || !$article->articleConditionParameter) {
-            return;
+        if ($model instanceof ArticleModel) {
+            return $visible;
         }
 
-        if ($article->articleConditionParameter) {
-            /** @var Input $inputAdapter */
-            $inputAdapter = $this->framework->getAdapter(Input::class);
-            $getParameter = $inputAdapter->get($article->articleConditionParameter);
+        if (!$visible || !$model->articleConditionParameter) {
+            return $visible;
+        }
 
-            if (!$article->articleConditionInvert) {
+        if ($model->articleConditionParameter) {
+            /** @var Adapter<Input> $inputAdapter */
+            $inputAdapter = $this->framework->getAdapter(Input::class);
+            $getParameter = $inputAdapter->get($model->articleConditionParameter);
+
+            if (!$model->articleConditionInvert) {
                 if (!$getParameter) {
-                    return $article->published = false;
+                    return false;
                 }
-            } elseif ($article->articleConditionInvert) {
+            } elseif ($model->articleConditionInvert) {
                 if ($getParameter) {
-                    return $article->published = false;
+                    return false;
                 }
             }
         }
+
+        return $visible;
     }
 }
