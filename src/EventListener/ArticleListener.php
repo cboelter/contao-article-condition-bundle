@@ -35,7 +35,7 @@ class ArticleListener
      */
     public function onIsVisibleElement(Model $model, bool $visible): bool
     {
-        if ($model instanceof ArticleModel) {
+        if (!$model instanceof ArticleModel) {
             return $visible;
         }
 
