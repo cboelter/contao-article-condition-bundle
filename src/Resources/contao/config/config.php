@@ -3,4 +3,4 @@
 /**
  * Hooks
  */
-$GLOBALS['TL_HOOKS']['getArticle'][] = ['boelter.article.condition.getarticle', 'onGetArticle'];
+$GLOBALS['TL_HOOKS']['isVisibleElement'][] = ['boelter.article.condition.getarticle', 'onIsVisibleElement'];
