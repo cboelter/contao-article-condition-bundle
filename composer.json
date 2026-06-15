@@ -29,7 +29,6 @@
     "symfony/http-kernel": "^7.4"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0",
     "phpcq/runner-bootstrap": "@dev"
   },
   "conflict": {
