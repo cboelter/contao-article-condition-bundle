@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: true
+        public: false
+
+    Boelter\ArticleConditionBundle\EventListener\ArticleListener:
+        arguments:
+            - "@contao.framework"

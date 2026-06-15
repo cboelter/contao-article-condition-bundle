@@ -1,21 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Boelter\ArticleConditionBundle;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-/**
- * Class ArticleConditionBundle
- * @package Boelter\ArticleConditionBundle
- */
-class ArticleConditionBundle extends Bundle
+class ArticleConditionBundle extends AbstractBundle
 {
-
-    /**
-     * @inheritdoc
-     */
-    public function build(ContainerBuilder $container)
-    {
-    }
 }

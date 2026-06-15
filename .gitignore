@@ -1,12 +1,11 @@
+# Companion
+/.env.companion
+
 # Composer
 /composer.lock
-/vendor/
+/vendor
 
-# Node
-/node_modules/
-
-# PhpUnit
-/phpunit.xml
-
-# OS
-.DS_STORE
+# PHPCQ
+/.phpcq
+/.phpcq.yaml
+/.phpcs-cache

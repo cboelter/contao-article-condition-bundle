@@ -1,56 +1,50 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Boelter\ArticleConditionBundle\EventListener;
 
 use Contao\ArticleModel;
-use Contao\CoreBundle\Framework\ContaoFrameworkInterface;
+use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
+use Contao\CoreBundle\Framework\Adapter;
+use Contao\CoreBundle\Framework\ContaoFramework;
 use Contao\Input;
+use Contao\Model;
 
-/**
- * Class ArticleListener
- * @package Boelter\ArticleConditionBundle\EventListener
- */
 class ArticleListener
 {
-    /**
-     * @var ContaoFrameworkInterface
-     */
-    protected $framework;
+    private Adapter|Input $input;
 
-    /**
-     * ArticleListener constructor.
-     * @param ContaoFrameworkInterface $framework
-     */
-    public function __construct(ContaoFrameworkInterface $framework)
+    public function __construct(ContaoFramework $framework)
     {
-        $this->framework = $framework;
+        $this->input = $framework->getAdapter(Input::class);
     }
 
-    /**
-     * Check the visibility of the article based on the condition configuration.
-     * @param ArticleModel $article
-     * @return bool|void
-     */
-    public function onGetArticle(ArticleModel $article)
+    #[AsHook('isVisibleElement')]
+    public function onIsVisibleElement(Model $model, bool $visible): bool
     {
-        if (!$article->published || !$article->articleConditionParameter) {
-            return;
+        if (! $model instanceof ArticleModel) {
+            return $visible;
         }
 
-        if ($article->articleConditionParameter) {
-            /** @var Input $inputAdapter */
-            $inputAdapter = $this->framework->getAdapter(Input::class);
-            $getParameter = $inputAdapter->get($article->articleConditionParameter);
+        if (! $visible || ! $model->articleConditionParameter) {
+            return $visible;
+        }
 
-            if (!$article->articleConditionInvert) {
-                if (!$getParameter) {
-                    return $article->published = false;
+        if ($model->articleConditionParameter) {
+            $getParameter = $this->input->get($model->articleConditionParameter);
+
+            if (! $model->articleConditionInvert) {
+                if (! $getParameter) {
+                    return false;
                 }
-            } elseif ($article->articleConditionInvert) {
+            } elseif ($model->articleConditionInvert) {
                 if ($getParameter) {
-                    return $article->published = false;
+                    return false;
                 }
             }
         }
+
+        return true;
     }
 }

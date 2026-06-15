@@ -1,14 +1,13 @@
 {
   "name": "cboelter/article-condition-bundle",
   "description": "Conditions for contao articles",
+  "license": "LGPL-3.0+",
+  "type": "contao-module",
   "keywords": [
     "contao",
     "article",
     "condition"
   ],
-  "type": "contao-module",
-  "homepage": "https://boelter.eu",
-  "license": "LGPL-3.0+",
   "authors": [
     {
       "name": "Christopher Bölter",
@@ -17,16 +16,21 @@
       "role": "Developer"
     }
   ],
+  "homepage": "https://boelter.eu",
   "support": {
     "source": "https://github.com/cboelter/contao-article-condition-bundle"
   },
   "require": {
-    "php": "^7.0",
-    "contao/core-bundle": "^4.4",
-    "contao-community-alliance/meta-palettes": "^2.0"
+    "php": "^8.4",
+    "contao-community-alliance/meta-palettes": "^2.1",
+    "contao/core-bundle": "^5.7",
+    "contao/manager-plugin": "^2.13",
+    "symfony/config": "^7.4",
+    "symfony/http-kernel": "^7.4"
   },
   "require-dev": {
-    "contao/manager-plugin": "^2.0"
+    "contao/manager-plugin": "^2.0",
+    "phpcq/runner-bootstrap": "@dev"
   },
   "conflict": {
     "contao/manager-plugin": "<2.0 || >=3.0"
@@ -34,6 +38,13 @@
   "autoload": {
     "psr-4": {
       "Boelter\\ArticleConditionBundle\\": "src"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "contao/manager-plugin": true,
+      "php-http/discovery": true
     }
   },
   "extra": {

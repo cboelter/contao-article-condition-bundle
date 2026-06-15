@@ -1,8 +1,6 @@
 <?php
 
-/**
- * Fields
- */
+// Fields
 $GLOBALS['TL_LANG']['tl_article']['articleConditionParameter'] = [
     'GET-Paramater für Bedingung',
     'Bitte geben Sie den GET-Parameter für diese Bedingung ein',
